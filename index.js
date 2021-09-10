@@ -9,3 +9,16 @@ exports.getValueFromObject = (obj, key) => {
     return typeof o === "undefined" || o === null ? o : o[x]
   }, obj)
 }
+
+/**
+ * Verifica se o objeto possui a chave
+ * @param {*} obj Objeto
+ * @param {*} key Chave a ser verificada
+ */
+exports.hasKey = (obj, key) => {
+  return key.split(".").every(function (x) {
+    if (typeof obj !== "object" || obj === null || !(x in obj)) return false
+    obj = obj[x]
+    return true
+  })
+}
